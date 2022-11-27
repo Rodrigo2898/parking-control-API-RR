@@ -41,6 +41,7 @@ public class ParkingSpotController {
         if(parkingSpotService.existsByApartmentAndBlock(parkingSpotDto.getApartment(), parkingSpotDto.getBlock())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("CONFLICTS: Parking spot is already exists for apartment and block");
         }
+        
         var parkingSpotModel = new ParkingSpotModel();
         BeanUtils.copyProperties(parkingSpotDto, parkingSpotModel);
         parkingSpotModel.setRegistrationDate(LocalDateTime.now(ZoneId.of("UTC")));
